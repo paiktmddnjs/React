@@ -9,7 +9,8 @@ import NotFound from "./user-manager/NotFound";
 function App() {
   return (
     <UserProvider>
-     <BrowserRouter>
+  
+     <BrowserRouter>    {/* 브라우저 주소창이 변화하면 React Router가 이를 감지해서 해당하는 컴포넌트를 보여준다. */}
       <Routes>
         <Route path="/" element={<UserList />} />  {/* 유저목록페이지 */}
         <Route path="/user/:id" element={<UserDetail />} /> {/* 유저상세페이지 */}

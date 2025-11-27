@@ -13,8 +13,9 @@ function UserProvider({ children }) {
 
 
   //Provider는 Context를 하위 컴포넌트들에게 전달하는 역할
+  //Provider 컴포넌트에 value 속성에 데이터를 지정하면 하위컴포넌트에 데이터를 전달할 수 있다
   return (
-    <UserContext.Provider value={{ users, setUsers }}>
+    <UserContext.Provider value={{ users, setUsers }}> 
       {children}
     </UserContext.Provider>
   );

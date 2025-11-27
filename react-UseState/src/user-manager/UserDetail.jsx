@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "./UserListFile";
 
 function UserDetail() {
-  const { id } = useParams();
+  const { id } = useParams(); //URL 경로에서 파라미터 값을 가져온다.
   const { users, setUsers } = useContext(UserContext);
   const navigate = useNavigate();
 

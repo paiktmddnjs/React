@@ -3,32 +3,31 @@ import { useContext } from "react";
 import { UserContext } from "./UserListFile";
 
 function UserList() {
-  const { users } = useContext(UserContext);
+  const { users } = useContext(UserContext); //useContext : React의 Context에 저장된 값을 가져오는 훅
 
   return (
     <div
       style={{
         display: "flex",
         justifyContent: "center", // 가로 중앙
-        alignItems: "center",     // 세로 중앙
-       width: "100vw" ,        // 화면 전체 높이
+        alignItems: "center",   
+        fontSize: "30px",  // 세로 중앙
+       width: "100vw"       // 화면 전체 높이
      
       }}
     >
-      <div style={{ textAlign: "center" }}> {/* 내부 텍스트 중앙 */}
+      <div style={{ padding : "20px", border : "solid 3px black", textAlign: "center" }}> {/* 내부 텍스트 중앙 */}
         <h2>전체 유저 리스트</h2>
 
         <ul style={{ listStyle: "none", padding: 0 }}>
+          
           {users.map((user) => (
             <li key={user.id} style={{ marginBottom: "10px" }}>
               <Link
                 to={`/user/${user.id}`}
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                }}
+                style= {{ color: "black"  }}
               >
-                <strong>{user.name}</strong> ({user.age}세) —{" "}
+                <strong>{user.name}</strong> ({user.age}세) — {" "}
                 <span
                   style={{
                     color: user.status === "online" ? "green" : "red",

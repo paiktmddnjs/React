@@ -1,9 +1,10 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserListFile";
+import styled from "styled-components";
 
 function UserRegistration() {
-  const { users, setUsers } = useContext(UserContext);
+  const { users, setUsers } = useContext(UserContext); // useContext : 어떤 데이터를 *전역 공간(Context)*에 저장해두고 모든 컴포넌트가 바로 꺼내 쓸 수 있게 만들어 준다.
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -37,7 +38,7 @@ function UserRegistration() {
   };
 
 
-    // onChange로 입력락ㅄ이 바뀔떄 상태를 업데이트한다.
+    // onChange로 입력값이 바뀔떄 상태를 업데이트한다.
   return (
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center",   width: "100vw"  }}>
       <form onSubmit={handleSubmit} style={{ width: "350px", padding: "20px", borderRadius: "10px", border: "1px solid #ccc" }}>
@@ -46,7 +47,7 @@ function UserRegistration() {
         <div style={{ marginBottom: "10px" }}>
           <label>이름:</label>
       
-          <input type="text" value={name} onChange={e => setName(e.target.value)} style={{ width: "100%" }} />
+          <input type="text" value={name} onChange={e => setName(e.target.value)} style={{ width: "100%" }} /> {/* e.target.value : 이벤트가 발생한 요소(target)에 사용자가 입력한 값(value)을 넣는다.  */}
         </div>
 
         <div style={{ marginBottom: "10px" }}>
