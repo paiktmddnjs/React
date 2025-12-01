@@ -21,12 +21,10 @@ function UserList() {
 
         <ul style={{ listStyle: "none", padding: 0 }}>
           
-          {users.map((user) => (
+          {users.map((user) => ( //반복해서 새로운 데이터를 만들어낸다.
             <li key={user.id} style={{ marginBottom: "10px" }}>
-              <Link
-                to={`/user/${user.id}`}
-                style= {{ color: "black"  }}
-              >
+              <Link to={`/user/${user.id}`} style= {{ color: "black"  }} >
+              
                 <strong>{user.name}</strong> ({user.age}세) — {" "}
                 <span
                   style={{
@@ -41,7 +39,7 @@ function UserList() {
           ))}
         </ul>
         <Link to={`/user`}>
-          <button>유저 등록</button>
+          유저 등록
         </Link>
       </div>
     </div>

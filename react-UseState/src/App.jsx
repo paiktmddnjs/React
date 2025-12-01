@@ -8,8 +8,9 @@ import NotFound from "./user-manager/NotFound";
 
 function App() {
   return (
-    <UserProvider>
-  
+    <UserProvider> {/*children을 만들어서 function UserProvider({ children }) 호출*/}
+
+     {/*<UserProvider>로 인해 <BrowserRouter> ...</BrowserRouter>(하위객체를 children으로 만든다. */}
      <BrowserRouter>    {/* 브라우저 주소창이 변화하면 React Router가 이를 감지해서 해당하는 컴포넌트를 보여준다. */}
       <Routes>
         <Route path="/" element={<UserList />} />  {/* 유저목록페이지 */}
@@ -18,6 +19,7 @@ function App() {
         <Route path="*" element={<NotFound />} />   {/* 에러 페이지 */ }
       </Routes>
      </BrowserRouter>
+
     </UserProvider>
   );
 }

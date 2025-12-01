@@ -4,7 +4,7 @@ import { UserContext } from "./UserListFile";
 
 function UserDetail() {
   const { id } = useParams(); //URL 경로에서 파라미터 값을 가져온다.
-  const { users, setUsers } = useContext(UserContext);
+  const { users, setUsers } = useContext(UserContext); // 값을 변경해야하므로 setUsers까지 가져온다.
   const navigate = useNavigate();
 
 
@@ -21,10 +21,9 @@ function UserDetail() {
   
 
 
-
   const deleteUser = (id) => {
-    const filtered = users.filter((u) => u.id !== id);
-    setUsers(filtered);
+    const filtered = users.filter((u) => u.id !== id); //배열의 각 요소(u)를 하나씩 확인하고 조건을 만족하면 배열에 포함, 만족하지 않으면 제외
+    setUsers(filtered); // 배열을 초기화 
     navigate("/");
   };
 
