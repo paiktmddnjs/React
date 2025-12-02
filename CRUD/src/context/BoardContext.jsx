@@ -12,8 +12,17 @@ export const useBoard = () =>{
 
 export const BoardProvider = ({ children }) => {
 
- const [posts, setPosts] = useState([]);
+ const [posts, setPosts] = useState(() => {
+    const savedPosts = localStorage.getItem('posts');
+    return savedPosts ? JSON.parse(savedPosts) : [];
+ });
+ 
+    useEffect(() => {
+        localStorage.setItem('posts', JSON.stringify(posts));
+    },[posts])
 
+
+    
  const addBoard = (memberId) => {
     if (!title.trim() || !content.trim()) return;
 
