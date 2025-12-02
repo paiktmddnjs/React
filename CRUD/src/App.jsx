@@ -8,9 +8,9 @@ import { BoardProvider } from "./context/BoardContext";
 function App() {
 
   return (
-    <BoardProvider>
+   
       <AppRoutes />
-    </BoardProvider>
+  
   )
 }
 

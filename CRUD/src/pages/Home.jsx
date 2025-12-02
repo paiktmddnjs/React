@@ -1,27 +1,17 @@
-import { Link } from "react-router-dom";
-import "./Home.styled";
+import { Container, Title, Desc, ButtonGroup, Button } from "./Home.styled";
 
 function Home() {
   return (
-    <div className="home-container">
-      <h1 className="home-title">📌 React 게시판</h1>
+    <Container>
+      <Title>🎮 게임 게시판 🎮</Title>
 
-      <p className="home-desc">
-        간단한 CRUD 기능을 제공하는 게시판 예제입니다.
-      </p>
+      <Desc>간단한 CRUD 기능을 제공하는 게시판 예제입니다.</Desc>
 
-      <div className="home-buttons">
-        <Link to="/board" className="home-btn">
-          글 목록 보기
-        </Link>
-
-        <Link to="/write" className="home-btn">
-          글 작성하기
-        </Link>
-
-    
-      </div>
-    </div>
+      <ButtonGroup>
+        <Button to="board">글 목록 보기</Button>
+        <Button to="write">글 작성하기</Button>
+      </ButtonGroup>
+    </Container>
   );
 }
 

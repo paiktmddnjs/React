@@ -2,6 +2,7 @@
 export const ROUTES = {
     HOME: "/",
     BOARD: '/board',
+    EDIT : '/edit',
 
     WRTIE: (id) => `/write/${id}`,
 }

@@ -1,80 +1,48 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { createContext, useState } from "react";
-
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export const BoardContext = createContext();
 
-
-export const useBoard = () =>{
-    const context = useContext(BoardContext);
-    return context;
-}
+export const useBoard = () => useContext(BoardContext);
 
 export const BoardProvider = ({ children }) => {
-
- const [posts, setPosts] = useState(() => {
-    const savedPosts = localStorage.getItem('posts');
+  const [posts, setPosts] = useState(() => {
+    const savedPosts = localStorage.getItem("posts");
     return savedPosts ? JSON.parse(savedPosts) : [];
- });
- 
-    useEffect(() => {
-        localStorage.setItem('posts', JSON.stringify(posts));
-    },[posts])
+  });
 
+  useEffect(() => {
+    localStorage.setItem("posts", JSON.stringify(posts));
+  }, [posts]);
 
-    
- const addBoard = (memberId) => {
+  // 게시글 추가
+  const addBoard = (title, content) => {
     if (!title.trim() || !content.trim()) return;
 
     const newPost = {
       id: Date.now(),
       title,
-      content,
+      content
     };
 
     setPosts(prev => [...prev, newPost]);
-    setTitle("");
-    setContent("");
-
-    // 글 작성 후 목록 페이지로 이동
-    navigate("/board");
   };
 
+  // 게시글 수정
+  const updateBoard = (id, title, content) => {
+    setPosts(prev =>
+      prev.map(post =>
+        post.id === id ? { ...post, title, content } : post
+      )
+    );
+  };
 
-  
+  // 게시글 삭제
   const deleteBoard = (id) => {
     setPosts(prev => prev.filter(post => post.id !== id));
   };
 
-  
-  const editBoard = (post) => {
-    setEditingId(post.id);
-    setTitle(post.title);
-    setContent(post.content);
-    // 편집 시 현재 페이지 유지
-  };
-
-  const handleUpdate = () => {
-    setPosts(prev =>
-      prev.map(post =>
-        post.id === editingId
-          ? { ...post, title, content }
-          : post
-      )
-    );
-
-    setEditingId(null);
-    setTitle("");
-    setContent("");
-
-    // 수정 완료 후 목록 페이지로 이동
-    navigate("/board");
-  };
-
-
-
   return (
-    <BoardContext.Provider value={{ posts, setPosts }}>
+    <BoardContext.Provider value={{ posts, addBoard, updateBoard, deleteBoard }}>
       {children}
     </BoardContext.Provider>
   );

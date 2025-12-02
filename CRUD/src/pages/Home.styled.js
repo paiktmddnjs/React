@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height : 20vw;
+  
+ 
   font-family: Arial, sans-serif;
   text-align: center;
   background-color: #f7f7f7;
@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   font-size: 36px;
+  color : black;
   margin-bottom: 20px;
 `;
 
@@ -24,6 +25,9 @@ export const Desc = styled.p`
 
 export const ButtonGroup = styled.div`
   display: flex;
+  
+  justify-content: center;
+  align-items: center;
   gap: 15px;
 `;
 

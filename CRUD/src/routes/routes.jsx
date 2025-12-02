@@ -4,23 +4,24 @@ import { BoardProvider } from "../context/BoardContext";
 
 import Home from "../pages/Home";
 import BoardList from "../pages/BoardList";
+import EditBoard from "../pages/EditBoard";
 import WriteBoard from "../pages/WriteBoard";
+import BoardDetail from "../pages/BoardDetail";   // ✅ 추가!
 
 function AppRoutes() {
   return (
     <BoardProvider>
      <BrowserRouter>
       <Routes>
-        {/* 공통 레이아웃 */}
         <Route path={ROUTES.HOME}>
           
-          {/* index = 기본 화면 */}
           <Route index element={<Home />} />
 
-          {/* 게시판 목록 */}
           <Route path="board" element={<BoardList />} />
+          <Route path="board/:id" element={<BoardDetail />} /> {/* 상세 페이지 */}
 
-          {/* 글 작성/수정 */}
+          <Route path="/edit/:id" element={<EditBoard />} />
+          
           <Route path="write/:id" element={<WriteBoard />} />
           <Route path="write" element={<WriteBoard />} />
         </Route>
