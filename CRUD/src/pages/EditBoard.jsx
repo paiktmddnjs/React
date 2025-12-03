@@ -29,7 +29,7 @@ function EditBoard() {
     navigate("/board");
   };
 
-  if (!boardItem) return <div>❌ 해당 게시글을 찾을 수 없습니다.</div>;
+  if (!boardItem) return <div> 해당 게시글을 찾을 수 없습니다.</div>;
 
   return (
     <Wrapper>

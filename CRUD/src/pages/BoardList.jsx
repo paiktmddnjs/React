@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useBoard } from "../context/BoardContext";
 import {
   Container,
@@ -6,16 +6,17 @@ import {
   StyledLink,
   List,
   Card,
-  HomeLinkWrapper
+  HomeLinkWrapper,
+  DateText
 } from "./BoardList.styled";
 
 function BoardList() {
-  const { posts, deleteBoard } = useBoard();
+  const { posts } = useBoard();
   const navigate = useNavigate();
 
   return (
     <Container>
-      <h1>게임 게시판 목록</h1>
+      <h1>🍽️ 맛집 맛평가 게시판</h1>
 
       <WriteBox>
         <StyledLink to="/write">글쓰기</StyledLink>
@@ -24,8 +25,19 @@ function BoardList() {
       <List>
         {posts.map((post) => (
           <Card key={post.id} onClick={() => navigate(`/board/${post.id}`)}>
-            <h3>{post.title}</h3>
+            {/* 제목 */}
+            <h2 style={{ color: "#A9A9A9" }}>{post.title}</h2>
+
+            {/* 내용 */}
             <p>{post.content}</p>
+
+            {/* ⭐ 평점 */}
+            <p style={{ fontSize: "20px", margin: 0 }}>
+              {"⭐".repeat(post.score)}
+            </p>
+
+            {/* 📅 날짜 오른쪽 */}
+            <DateText>{post.date}</DateText>
           </Card>
         ))}
       </List>
@@ -38,4 +50,3 @@ function BoardList() {
 }
 
 export default BoardList;
-

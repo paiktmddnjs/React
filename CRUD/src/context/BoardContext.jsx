@@ -15,13 +15,18 @@ export const BoardProvider = ({ children }) => {
   }, [posts]);
 
   // 게시글 추가
-  const addBoard = (title, content) => {
+  const addBoard = (category, score, title, content, author, date, image) => {
     if (!title.trim() || !content.trim()) return;
 
     const newPost = {
       id: Date.now(),
+      score,
+      author,
       title,
-      content
+      content,
+      category,
+      date,
+      image
     };
 
     setPosts(prev => [...prev, newPost]);
