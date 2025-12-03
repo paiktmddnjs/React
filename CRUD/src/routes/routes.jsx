@@ -10,7 +10,10 @@ import WriteBoard from "../pages/WriteBoard";
 import BoardDetail from "../pages/BoardDetail";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import NotFound from "../pages/NotFound";
+
 import ProtectedRoute from "../routes/ProtectedRoute";
+
 
 function AppRoutes() {
   return (
@@ -36,7 +39,9 @@ function AppRoutes() {
               <Route path="board/:id" element={<BoardDetail />} />
               <Route path="write" element={<WriteBoard />} />
               <Route path="write/:id" element={<WriteBoard />} />
+               
             </Route>
+             <Route path="*" element={<NotFound />} /> 
           </Routes>
         </BrowserRouter>
       </BoardProvider>

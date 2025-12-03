@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useBoard } from "../context/BoardContext";
 import {
@@ -7,11 +8,50 @@ import {
   List,
   Card,
   HomeLinkWrapper,
-  DateText
+  DateText,
+  HeartButton
 } from "./BoardList.styled";
 
+// ⭐️ PostCard 컴포넌트를 BoardList 함수 정의 외부로 독립적으로 정의합니다.
+// 이로써 컴포넌트가 React의 규칙에 따라 명확히 분리되고 안정화됩니다.
+const PostCard = ({ post, navigate, likes = {}, togglePostLike }) => {
+  // ⭐️ likes props에 기본값 {}을 설정하여, 혹시라도 undefined가 들어와도 안전하게 접근할 수 있도록 보장합니다.
+  const isLiked = !!likes[post.id]; 
+
+  const handleLikeClick = (e) => {
+    e.stopPropagation(); // Card 클릭 이벤트 방지
+    togglePostLike(post.id); // Context 함수 호출
+  };
+
+  return (
+    <Card onClick={() => navigate(`/board/${post.id}`)}>
+      {/* 제목 */}
+      <h2>{post.title}</h2> 
+
+      {/* 내용 */}
+      <p>{post.content}</p>
+
+      {/* ⭐ 평점 */}
+      <div style={{ fontSize: "20px", margin: 0 }}>
+        {"⭐".repeat(post.score)}
+      </div>
+
+      {/* 📅 날짜 오른쪽 */}
+      <DateText>{post.date}</DateText>
+      
+      {/* ⭐️ 클릭 가능한 하트 버튼 (인기도) */}
+      <HeartButton onClick={handleLikeClick} isLiked={isLiked}>
+        {isLiked ? '❤️' : '🤍'}
+      </HeartButton>
+    </Card>
+  );
+};
+
 function BoardList() {
-  const { posts } = useBoard();
+  // ⭐️ useBoard에서 likes 상태를 가져옵니다.
+  // Context가 아직 초기화되지 않았거나 posts를 로드하는 중이라면 likes가 빈 객체({})이거나 undefined일 수 있습니다.
+  // PostCard에 기본값({})을 설정하여 안전하게 처리합니다.
+  const { posts, likes, togglePostLike } = useBoard();
   const navigate = useNavigate();
 
   return (
@@ -24,21 +64,13 @@ function BoardList() {
 
       <List>
         {posts.map((post) => (
-          <Card key={post.id} onClick={() => navigate(`/board/${post.id}`)}>
-            {/* 제목 */}
-            <h2 style={{ color: "#A9A9A9" }}>{post.title}</h2>
-
-            {/* 내용 */}
-            <p>{post.content}</p>
-
-            {/* ⭐ 평점 */}
-            <p style={{ fontSize: "20px", margin: 0 }}>
-              {"⭐".repeat(post.score)}
-            </p>
-
-            {/* 📅 날짜 오른쪽 */}
-            <DateText>{post.date}</DateText>
-          </Card>
+          <PostCard 
+            key={post.id} 
+            post={post} 
+            navigate={navigate} 
+            likes={likes}
+            togglePostLike={togglePostLike}
+          />
         ))}
       </List>
 

@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useBoard } from "../context/BoardContext";
+// ⭐️ useAuth를 가져와 로그인 사용자 정보를 사용합니다.
+import { useAuth } from "../context/AuthContext"; 
 import {
   Wrapper,
   Content,
@@ -9,85 +11,81 @@ import {
   EditButton,
   DeleteButton,
   HomeLink,
+  StoreHeader, 
+  CategoryText, 
+  ScoreDisplay, 
+  PostImage, 
+  ImagePlaceholder, 
 } from "./BoardDetail.styled";
 
 function BoardDetail() {
   const { id } = useParams();
   const { posts, deleteBoard } = useBoard();
+  const { user } = useAuth(); // ⭐️ 로그인 사용자 정보 가져오기
   const navigate = useNavigate();
 
   const post = posts.find((p) => p.id === Number(id));
 
   if (!post) return <Wrapper>❌ 게시글을 찾을 수 없습니다.</Wrapper>;
+  
+  // ⭐️ 현재 로그인된 사용자가 게시글 작성자인지 확인
+  // (가정: post 객체에 작성자 ID가 post.userId로 저장되어 있습니다.)
+  const isAuthor = user && post.userId === user.id;
 
   return (
     <Wrapper>
-      <Content
-        style={{
-          background: "#fff7e6",
-          padding: "25px",
-          borderRadius: "15px",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-        }}
-      >
+      <Content>
         {/* 상단 정보 */}
-        <div style={{ marginBottom: "15px" }}>
-          <h2 style={{ margin: 0, color: "#ff6b00" }}>{post.store}</h2>
-          <p style={{ margin: "5px 0", color: "#666" }}>
+        <StoreHeader>
+          <h2>{post.store}</h2>
+          <CategoryText>
             카테고리: <b>{post.category}</b>
-          </p>
+          </CategoryText>
+        </StoreHeader>
+
+        {/* 이미지 */}
+        <div>
+          {post.image ? (
+            <PostImage
+              src={post.image}
+              alt={post.title}
+            />
+          ) : (
+            <ImagePlaceholder>이미지 없음</ImagePlaceholder>
+          )}
         </div>
 
-        <div>
-
-  {post.image ? (
-    <img 
-      src={post.image} 
-      alt={post.title} 
-      style={{ maxWidth: "100%", borderRadius: "10px", marginBottom: "15px" }} 
-    />
-  ) : (
-    <p style={{ color: "#aaa" }}>이미지 없음</p>
-  )}
-
-</div>
-
         {/* ⭐ 맛 점수 표시 */}
-        <div
-          style={{
-            fontSize: "20px",
-            fontWeight: "bold",
-            color: "#f3e62aff",
-            marginBottom: "15px",
-          }}
-        >
+        <ScoreDisplay>
           {post.score
             ? "⭐".repeat(Number(post.score))
             : "점수 없음"}
-        </div>
+        </ScoreDisplay>
 
         {/* 제목 */}
-        <Title style={{ color: "#333", borderBottom: "1px solid #ddd" }}>
+        <Title>
           {post.title}
         </Title>
 
         {/* 내용 */}
-        <Text style={{ lineHeight: "1.6", marginTop: "10px" }}>
+        <Text>
           {post.content}
         </Text>
 
-        {/* 버튼 */}
-        <BtnGroup>
-          <EditButton onClick={() => navigate(`/edit/${id}`)}>수정하기</EditButton>
-          <DeleteButton
-            onClick={() => {
-              deleteBoard(Number(id));
-              navigate("/board");
-            }}
-          >
-            삭제하기
-          </DeleteButton>
-        </BtnGroup>
+        {/* ⭐️ isAuthor일 때만 버튼 그룹 렌더링 */}
+        {isAuthor && (
+          <BtnGroup>
+            <EditButton onClick={() => navigate(`/edit/${id}`)}>수정하기</EditButton>
+            <DeleteButton
+              onClick={() => {
+                deleteBoard(Number(id));
+                navigate("/board");
+              }}
+            >
+              삭제하기
+            </DeleteButton>
+          </BtnGroup>
+        )}
 
         <HomeLink to="/board">← 맛평가 목록으로 돌아가기</HomeLink>
       </Content>

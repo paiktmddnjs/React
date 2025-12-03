@@ -57,7 +57,7 @@ function WriteBoard() {
   return (
     <Wrapper>
       <Container>
-        <h1>📌 맛집 맛평가 게시판</h1>
+        <h1>맛집 맛평가 작성</h1>
         <FormBox>
 
           <Select value={category} onChange={(e) => setCategory(e.target.value)}>
