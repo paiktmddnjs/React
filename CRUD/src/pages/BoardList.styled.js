@@ -109,6 +109,11 @@ export const HeartButton = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+  
+  /* ⭐️ 포커스 시 발생하는 검은색 테두리 제거 */
+  &:focus {
+    outline: none; 
+  }
 `;
 // 날짜 텍스트 (우측 하단 배치)
 export const DateText = styled.span`

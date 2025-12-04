@@ -75,3 +75,47 @@ export const LogoutButton = styled.button`
     transform: translateY(-2px);
   }
 `;
+
+// src/pages/Home.styled.js 에 추가해야 할 스타일
+
+// ... 기존 import 및 스타일 유지
+
+// 📊 통계 컨테이너
+// src/pages/Home.styled.js (StatsContainer 수정 부분)
+
+export const StatsContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 800px;
+  /* 🌟 수정된 부분: margin: top/bottom auto (좌우 중앙 정렬) */
+  margin: 30px auto; 
+  /* ---------------------------------------------------- */
+  padding: 20px;
+  background-color: #E0F2F1; /* 연한 배경색 (청록색 계열) */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
+// 📈 통계 항목 개별 스타일
+export const StatsItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+
+  h4 {
+    color: #004D40; /* 진한 텍스트 */
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  p {
+    color: #00796B; /* 포인트 텍스트 */
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 0;
+  }
+`;

@@ -56,7 +56,7 @@ function BoardList() {
 
   return (
     <Container>
-      <h1>🍽️ 맛집 맛평가 게시판</h1>
+      <h1>🍽️ 맛평가 게시판</h1>
 
       <WriteBox>
         <StyledLink to="/write">글쓰기</StyledLink>
