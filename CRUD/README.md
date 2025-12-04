@@ -55,7 +55,7 @@
 
 ## ✅ 회원가입 / 로그인 / 로그아웃 기능
 - localStorage.key()를 이용해 user_로 시작하는 키를 찾아 전화번호 중복 제거
-- setUser(null);을 하여 로그아웃을 구현
+- setUser(null); 방식으로 로그아웃을 구현
 
 <br>
 
