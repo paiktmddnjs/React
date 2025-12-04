@@ -74,7 +74,7 @@
 <br>
 
 ### < 👤 사용자별 좋아요 상태 관리 >
-- useEffect를 이용해 [allUserLikes, currentUserId]가 변경될때마다 allUserLikes을 로컬스토리지에 ALL_LIKES_STORAGE_KEY 형태로 저장하여 현재 사용자의 likes 상태를 업데이트한다.
+- useEffect를 이용해 [allUserLikes, currentUserId]가 변경될때마다 allUserLikes을 로컬스토리지에 ALL_LIKES_STORAGE_KEY 형태로 저장하여 현재 사용자의 likes 상태를 업데이트한다. ( 좋아요 값이 바뀔떄마다 해당 실행한다.)
 <img width="607" height="182" alt="image" src="https://github.com/user-attachments/assets/dfd92992-7be7-4a73-bcb0-f29ed056ab4e" />
 
 <br><br>
