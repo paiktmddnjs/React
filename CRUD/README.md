@@ -1,16 +1,116 @@
-# React + Vite
+# 🚀 프로젝트명 (Project Name)
+> 짧고 강렬한 한줄 소개 (ex: "회원 관리와 게시판 기능을 갖춘 JSP 기반 웹 애플리케이션")
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📘 개요 (Overview)
+- 프로젝트 목적과 주요 기능을 간단히 설명
+- 기술스택과 핵심 특징 요약
+(ex:
+	본 프로젝트는 **Servlet과 JSP를 이용한 MVC 패턴 기반의 웹 애플리케이션**으로,  
+	회원 관리(로그인·회원가입) 및 게시판 CRUD 기능을 중심으로 구성되었습니다.  
+	Oracle 데이터베이스와 JDBC를 통해 데이터 연동을 수행하며,  
+	Eclipse + Tomcat 환경에서 실행 가능합니다.
+)
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📂 프로젝트 구조 (Directory Structure)
+<pre>
+📁 src/
+├─ 📁 assets/
+├─ 📁 context/
+│  ├─ 📄 AuthContext.jsx
+│  └─ 📄 BoardContext.jsx
+├─ 📁 pages/
+│  ├─ 📄 BoardDetail.jsx
+│  ├─ 📄 BoardDetail.styled.js
+│  ├─ 📄 BoardList.styled.js
+│  ├─ 📄 EditBoard.jsx
+│  ├─ 📄 EditBoard.styled.js
+│  ├─ 📄 Home.jsx
+│  ├─ 📄 Home.styled.js
+│  ├─ 📄 LoginPage.jsx
+│  ├─ 📄 LoginPage.styled.js
+│  ├─ 📄 NotFound.jsx
+│  ├─ 📄 NotFound.styled.js
+│  ├─ 📄 RegisterPage.jsx
+│  ├─ 📄 RegisterPage.styled.js
+│  ├─ 📄 TopPosts.jsx
+│  ├─ 📄 TopPosts.styled.js
+│  ├─ 📄 WriteBoard.jsx
+│  └─ 📄 WriteBoard.styled.js
+├─ 📁 routes/
+│  ├─ 📄 ProtectedRoute.jsx
+│  ├─ 📄 routePaths.js
+│  └─ 📄 routes.jsx
+├─ 📄 App.css
+├─ 📄 App.jsx
+├─ 📄 index.css
+└─ 📄 main.jsx
+</pre>
 
-## Expanding the ESLint configuration
+## 🌟 주요 기능 (Key Features)
+✅ 회원가입 / 로그인 / 로그아웃 기능
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+✅ 게시글 등록, 수정, 삭제 (CRUD)
+-
+- (삭제) filter()를 이용해 게시물ID와 일치하면 해당 게시물을 제외하고 배열을 제구성한다.
+- (수정) map()을 이용해서 해당 게시물ID를 찾아 넘어온 값을 덮어씌운다.
+  
+✅ 좋아요 처리
+- useState()를 이용해 '전체 사용자 좋아요 상태'를 와 '현재 사용자의 좋아요 상태'를 저장한다.
+
+(좋아요 개수)
+- userMemo()로 인해 [allUserLikes]의 값이 변할때마다 실행되어 Object.keys로 allUserLikes(모든 회원의 좋아요) 객체를 배열로 변환후 해당 배열을 게시글 ID 기준으로 또 를 돌며 좋아요가 눌러져있는 것에 대해 count를 1씩 증가시킨다.
+
+<pre>
+const allUserLikes = {
+  user1: { "post1": true(좋아요), "post3": true(좋아요) },
+  user2: { "post2": true(좋아요) },
+  user3: { "post1": true(좋아요), "post2": true(좋아요), "post4": true(좋아요) }
+};
+  </pre>
+
+>그중에서 우리가 어떤 userId의 좋아요 정보만 딱 꺼내면:
+<pre>
+userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
+  </pre>
+"post1": true(좋아요)가 좋아요가 있으므로 count + 1 
+
+
+- uesEffect를 이용해 [allUserLikes, currentUserId]가 변경될때마다 allUserLikes을 로컬스토리지에 ALL_LIKES_STORAGE_KEY 형태로 저장하여  현재 사용자의 likes 상태를 업데이트한다.
+
+
+
+✅ 베스트3 게시글 처리
+
+
+## 📸 화면 미리보기 (Preview)
+
+| 기능 | 미리보기 |
+|------|-----------|
+| 로그인 화면 | ![Login Page](./assets/login.gif) |
+| 회원가입 화면 | ![Register Page](./assets/register.png) |
+| 리뷰 목록 | ![Board List](./assets/board-list.jpg) |
+| 리뷰 작성 | ![Post Write](./assets/post-write.gif) |
+
+
+
+
+## 💡 학습 포인트 (Learning Points)
+
+- JSP & Servlet 기반 MVC 구조 설계 방법 학습
+- JDBC를 통한 데이터베이스 연결 및 SQL 처리 로직 구현
+- Tomcat 서버를 활용한 배포 및 실행 환경 이해
+- JSP 내 JSTL / EL 사용으로 동적 페이지 구현
+
+
+## 팀원 소개(협업시 추가)
+
+| 이름 | 포지션 | Contact |
+| --- | --- | --- |
+| 최지원 | AI | a1@gmail.com |
+| 최지투 | BE | a1@gmail.com |
+| 최지삼 | FE | a1@gmail.com |
+| 최지사 | FE | a1@gmail.com |
+| 최지오 | FE | a1@gmail.com |
