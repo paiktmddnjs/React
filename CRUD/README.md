@@ -69,6 +69,7 @@
 ## ✅ 좋아요 처리 기능
 ### < 🔄 좋아요 상태 및 업데이트 >
 - useState()를 이용해 '전체 사용자 좋아요 상태' 와 '현재 사용자의 좋아요 상태'를 랜더링될때마다 로컬스토리지에서 불러온다.
+<img width="585" height="169" alt="image" src="https://github.com/user-attachments/assets/42de2c24-bd07-4a81-80c3-546d4c3f8e0d" />
 
 <br>
 
@@ -79,7 +80,7 @@
 <br><br>
 
 ### < 📊 좋아요 개수 계산 >
-- userMemo()로 인해 [allUserLikes]의 값이 변할때마다 실행되어 Object.keys로 allUserLikes(모든 회원의 좋아요) 객체를 배열로 변환후 해당 배열을 게시글 ID 기준으로 또 를 돌며 좋아요가 눌러져있는 것에 대해 count를 1씩 증가시킨다.
+- userMemo()로 인해 [allUserLikes]의 값이 변할때마다 실행되어 Object.keys로 allUserLikes(모든 회원의 좋아요) 객체를 배열로 변환후 해당 배열을 게시글 ID 기준으로 돌며 좋아요가 눌러져있는 것에 대해 count를 1씩 증가시킨다.
 <img width="495" height="347" alt="image" src="https://github.com/user-attachments/assets/cecc6b3a-a3a1-49a2-b4df-0d7e567636d8" />
 
 
@@ -104,7 +105,7 @@ userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
 <br>
 
 ### < ❤️ 좋아요 설정/취소 기능 >
-- togglePostLike 를 만들어서 prev로 AllUserLikes의 이전 좋아요 데이터를 불러온후 postId를 이용해 해당 게시물의 좋아요 여부를 판단한후 현재 사용자의 좋아요 목록을 복사 하여 if문을 사용해 현재 사용자의 기존 좋아요 상태가 참이면 복사한것을 지우고 거짓이면 true로 값을 주어 이 상태를 현재 사용자 데이터에 덮어씌운다.
+- togglePostLike 를 만들어서 prev로 AllUserLikes의 기존 좋아요 데이터를 불러온후 postId를 이용해 해당 게시물의 좋아요 여부를 판단한후 현재 사용자의 좋아요 목록을 복사 하여 if문을 사용해 현재 사용자의 기존 좋아요 상태가 참이면 복사한것을 지우고 거짓이면 true로 값을 주어 이 상태를 현재 사용자 데이터에 덮어씌운다.
 <img width="558" height="307" alt="image" src="https://github.com/user-attachments/assets/b7f3dce2-201b-42cc-859d-e067244d8416" />
 
 
@@ -138,7 +139,7 @@ userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
 ## 💡 학습 포인트 (Learning Points)
 
 1️⃣ React Context API를 활용한 글로벌 상태 관리<br><br>
-2️⃣ localStorage 기반 Persist 구현<br><br>
+2️⃣ localStorage 기반 여러 함수 구현<br><br>
 3️⃣ 사용자별 좋아요(Like) 시스템 설계 능력 향상<br><br>
 
 <br><br>
@@ -154,4 +155,3 @@ userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
 
 ### 👤 마이페이지(프로필 페이지) 구축 <br>
 
-## ➡ 사용자 경험 고도화 + 개인화 서비스 구축 <br>
