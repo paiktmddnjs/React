@@ -127,7 +127,7 @@ userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
 <br><br>
 
 ## ✅ 베스트3 게시글 처리
-### < 🏆 게시글 좋아요 순 정렬 >
+### ◇ 🏆 게시글 좋아요 순 정렬 ◇
 - 아까 구한 postLikeCounts(각 게시물의 좋아요 수들)를 불러와서 배열로 변형후 sort() 함수를 이용해 각 배열의 요소들을 정렬하여 순위를 결정지었다.  
 <img width="617" height="48" alt="image" src="https://github.com/user-attachments/assets/21670a21-b9fe-48f8-94c3-c0bb0e4f86d0" />
 
