@@ -1,13 +1,13 @@
-# 🍽️ 맛평가 리뷰 게시판 (Food Review Board) <br>
+# 🍽️ <span>실시간 맛평가 리뷰 게시판</span> <br>
 
-이 프로젝트는 **React**를 기반으로 구현된 **실시간 맛평가 게시판 웹 애플리케이션**으로서
-사용자는 회원가입과 로그인을 통해 인증된 후, 게시글을 작성, 수정, 삭제(CRUD)할 수 있으며, 다른 사용자의 게시글에 좋아요,평점 등을 실시간 보거나 반영할 수 있도록 구현하였다.
+소개 : **React**를 기반으로 구현된 **실시간 맛평가 게시판 웹 애플리케이션**으로서
+사용자는 회원가입과 로그인을 통해 인증된 후, 게시글을 작성, 수정, 삭제(CRUD)할 수 있으며, 다른 사용자의 게시글에 좋아요, 평점 등을 실시간 보거나 반영할 수 있도록 구현하였다.
 
 <br><br>
 
 ## 🎯 주제를 선택한 이유 (Project Motivation)
 
-- 음식 리뷰를 공유하고 다른 사람들의 평가를 쉽게 확인할 수 있는 **맛평가 게시판**을 만들고 싶었다.
+- 평소에 자주 접하는 음식 리뷰 시스템을 나만의 방식으로 만들어 보고 싶었다.
 - React를 활용해 "실시간 데이터 처리 및 사용자 인증"을 경험하고, 실제 웹 서비스와 유사한 기능을 구현해보고자 하였다.
 - 로컬스토리지와 Context API를 활용한 상태 관리 및 데이터 전달 방식에 익숙해지고 싶었다.
 
@@ -21,24 +21,28 @@
 ├─ 📁 context/
 │  ├─ 📄 AuthContext.jsx
 │  └─ 📄 BoardContext.jsx
+│  
 ├─ 📁 pages/
 │  ├─ 📄 BoardDetail.jsx
+│  ├─ 📄 EditBoard.jsx
+│  ├─ 📄 Home.jsx
+│  ├─ 📄 LoginPage.jsx
+│  ├─ 📄 NotFound.jsx
+│  ├─ 📄 RegisterPage.jsx
+│  ├─ 📄 TopPosts.jsx
+│  └─ 📄 WriteBoard.jsx
+│
+├─ 📁 styles/
 │  ├─ 📄 BoardDetail.styled.js
 │  ├─ 📄 BoardList.styled.js
-│  ├─ 📄 EditBoard.jsx
 │  ├─ 📄 EditBoard.styled.js
-│  ├─ 📄 Home.jsx
 │  ├─ 📄 Home.styled.js
-│  ├─ 📄 LoginPage.jsx
 │  ├─ 📄 LoginPage.styled.js
-│  ├─ 📄 NotFound.jsx
 │  ├─ 📄 NotFound.styled.js
-│  ├─ 📄 RegisterPage.jsx
 │  ├─ 📄 RegisterPage.styled.js
-│  ├─ 📄 TopPosts.jsx
 │  ├─ 📄 TopPosts.styled.js
-│  ├─ 📄 WriteBoard.jsx
-│  └─ 📄 WriteBoard.styled.js
+│  └─ 📄 WriteBoard.styled.js  
+│  
 ├─ 📁 routes/
 │  ├─ 📄 ProtectedRoute.jsx
 │  ├─ 📄 routePaths.js
@@ -54,8 +58,16 @@
 # 🌟 주요 기능 (Key Features) <br>
 
 ## ✅ 회원가입 / 로그인 / 로그아웃 기능
+- localStorage.setItem()을 이용해 id 앞에 user_를 붙여 회원가입
+<img width="466" height="21" alt="image" src="https://github.com/user-attachments/assets/8ed34d33-dc71-462a-bff4-e457a5b8bf60" />
+
+
 - localStorage.key()를 이용해 user_로 시작하는 키를 찾아 전화번호 중복 제거
+ <img width="395" height="98" alt="image" src="https://github.com/user-attachments/assets/50981dee-6544-457d-b0e9-c35a16330d0a" />
+
+
 - setUser(null); 방식으로 로그아웃을 구현
+ <img width="197" height="75" alt="image" src="https://github.com/user-attachments/assets/8b60b4d6-2717-4546-9218-f2a495643fe1" />
 
 <br>
 
@@ -67,19 +79,20 @@
 <br>
   
 ## ✅ 좋아요 처리 기능
-### < 🔄 좋아요 상태 및 업데이트 >
-- useState()를 이용해 '전체 사용자 좋아요 상태' 와 '현재 사용자의 좋아요 상태'를 랜더링될때마다 로컬스토리지에서 불러온다.
+###  ◇ 🔄 좋아요 상태 및 업데이트  ◇
+- useState()를 이용해 '전체 사용자 좋아요 상태' 와 '현재 사용자의 좋아요 상태'의 값이 변하면 랜더링될때마다 로컬스토리지에서 불러온다.
+- useState()를 이용해 "현재 사용자 좋아요 상태'가 변하면 변한 상태를 저장하게하여 즉시 화면에 반영한다.
 <img width="585" height="169" alt="image" src="https://github.com/user-attachments/assets/42de2c24-bd07-4a81-80c3-546d4c3f8e0d" />
 
 <br><br>
 
-### < 👤 사용자별 좋아요 상태 관리 >
+###  ◇ 👤 사용자별 좋아요 상태 관리 ◇
 - useEffect를 이용해 [allUserLikes, currentUserId]가 변경될때마다 allUserLikes을 로컬스토리지에 ALL_LIKES_STORAGE_KEY 형태로 저장하여 현재 사용자의 likes 상태를 업데이트한다. ( 좋아요 값이 바뀔떄마다 해당 실행한다.)
 <img width="607" height="182" alt="image" src="https://github.com/user-attachments/assets/dfd92992-7be7-4a73-bcb0-f29ed056ab4e" />
 
 <br><br>
 
-### < 📊 좋아요 개수 계산 >
+###  ◇ 📊 좋아요 개수 계산 ◇
 - userMemo()로 인해 [allUserLikes]의 값이 변할때마다 실행되어 Object.keys로 allUserLikes(모든 회원의 좋아요) 객체를 배열로 변환후 해당 배열을 게시글 ID 기준으로 돌며 좋아요가 눌러져있는 것에 대해 count를 1씩 증가시킨다.
 <img width="495" height="347" alt="image" src="https://github.com/user-attachments/assets/cecc6b3a-a3a1-49a2-b4df-0d7e567636d8" />
 
@@ -104,12 +117,12 @@ userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
 
 <br>
 
-### < ❤️ 좋아요 설정/취소 기능 >
+### ◇ ❤️ 좋아요 설정/취소 기능 ◇
 - togglePostLike 를 만들어서 prev로 AllUserLikes의 기존 좋아요 데이터를 불러온후 postId를 이용해 해당 게시물의 좋아요 여부를 판단한후 현재 사용자의 좋아요 목록을 복사 하여 if문을 사용해 현재 사용자의 기존 좋아요 상태가 참이면 복사한것을 지우고 거짓이면 true로 값을 주어 이 상태를 현재 사용자 데이터에 덮어씌운다.
 <img width="558" height="307" alt="image" src="https://github.com/user-attachments/assets/b7f3dce2-201b-42cc-859d-e067244d8416" />
 
 
-<br>
+<br><br>
 
 ## ✅ 베스트3 게시글 처리
 ### < 🏆 게시글 좋아요 순 정렬 >
@@ -128,9 +141,9 @@ userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
 |----------|----------|
 | <img width="500" alt="리뷰 목록" src="https://github.com/user-attachments/assets/0704479f-57bf-4864-84e5-b3e890b2c80e" /> | <img width="500" alt="리뷰 작성" src="https://github.com/user-attachments/assets/2cddca61-1940-419f-9d87-8cf361d5b7f0" /> |
 
-| BEST 3 | - |
-|--------|---|
-| <img width="500" alt="BEST 3" src="https://github.com/user-attachments/assets/57d0e60d-8259-4805-be3c-17b767f9aa9d" /> | - |
+| BEST 3 | 상세 리뷰 |
+|--------|--------|
+| <img width="500" alt="BEST 3" src="https://github.com/user-attachments/assets/57d0e60d-8259-4805-be3c-17b767f9aa9d" /> | <img width="500" alt="image" src="https://github.com/user-attachments/assets/2a129516-03e2-48f0-b20a-273b6f1cec2c" /> |
 
 
 <br><br>
