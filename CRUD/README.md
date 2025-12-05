@@ -120,7 +120,7 @@ userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
 <br>
 
 ### ◇ ❤️ 좋아요 설정/취소 기능 ◇
-- togglePostLike 를 만들어서 prev로 AllUserLikes의 기존 좋아요 데이터를 불러온후 postId를 이용해 해당 게시물의 좋아요 여부를 판단한후 현재 사용자의 좋아요 목록을 복사 하여 if문을 사용해 현재 사용자의 기존 좋아요 상태가 참이면 복사한것을 지우고 거짓이면 true로 값을 주어 이 상태를 현재 사용자 데이터에 덮어씌운다.
+- togglePostLike 를 만들어서 prev로 AllUserLikes의 '기존 좋아요 데이터'를 불러온 후 postId를 이용해 해당 게시물의 좋아요 여부를 판단한 후 '현재 사용자의 좋아요 목록'을 복사 하여 if문을 사용해 '현재 사용자의 기존 좋아요 상태'가 참이면 복사한것을 지우고 거짓이면 true로 값을 주어 이 상태를 '현재 사용자 데이터'에 덮어씌운다.
 <img width="558" height="307" alt="image" src="https://github.com/user-attachments/assets/b7f3dce2-201b-42cc-859d-e067244d8416" />
 
 
