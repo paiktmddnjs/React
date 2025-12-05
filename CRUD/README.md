@@ -61,10 +61,12 @@
 - localStorage.setItem()을 이용해 id 앞에 user_를 붙여 회원가입
 <img width="466" height="21" alt="image" src="https://github.com/user-attachments/assets/8ed34d33-dc71-462a-bff4-e457a5b8bf60" />
 
+<br><br>
 
 - localStorage.key()를 이용해 user_로 시작하는 키를 찾아 전화번호 중복 제거
  <img width="395" height="98" alt="image" src="https://github.com/user-attachments/assets/50981dee-6544-457d-b0e9-c35a16330d0a" />
 
+<br><br>
 
 - setUser(null); 방식으로 로그아웃을 구현
  <img width="197" height="75" alt="image" src="https://github.com/user-attachments/assets/8b60b4d6-2717-4546-9218-f2a495643fe1" />
@@ -74,7 +76,7 @@
 ## ✅ 리뷰 게시글 등록, 수정, 삭제 (CRUD)
 - (삭제) filter()를 이용해 게시물ID와 일치하면 해당 게시물을 제외하고 배열을 재구성한다.
 - (수정) map()을 이용해서 해당 게시물ID를 찾아 넘어온 값을 덮어씌운다.
-- {isAuthor && (...)} 와같이 조건부 렌더링을 사용하여 해당 사용자만 자신의 게시물에 대해 수정/삭제 할수 있도록 구현하였다.
+- {isAuthor && (...)} 와같이 조건부 렌더링을 사용하여 해당 사용자만 자신의 게시물에 대해 수정/삭제 할 수 있도록 구현하였다.
 
 <br>
   
@@ -113,7 +115,7 @@ const allUserLikes = {
 userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
 </pre>
 
->"post1": true(좋아요)에 좋아요가 있으므로 해당 게시물의 count기 1 증가  ( if (userLikes[postId]) )
+>"post1": true(좋아요)에 좋아요가 있으므로 해당 게시물의 count가 1 증가  ( if (userLikes[postId]) )
 
 <br>
 
@@ -126,7 +128,7 @@ userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
 
 ## ✅ 베스트3 게시글 처리
 ### < 🏆 게시글 좋아요 순 정렬 >
--아까 구한 postLikeCounts(각 게시물의 좋아요 수들)를 불러와서 배열로 변형후 sort() 함수를 이용해 각 배열의 요소들을 정렬하여 순위를 결정지었다.  
+- 아까 구한 postLikeCounts(각 게시물의 좋아요 수들)를 불러와서 배열로 변형후 sort() 함수를 이용해 각 배열의 요소들을 정렬하여 순위를 결정지었다.  
 <img width="617" height="48" alt="image" src="https://github.com/user-attachments/assets/21670a21-b9fe-48f8-94c3-c0bb0e4f86d0" />
 
 <br><br>
