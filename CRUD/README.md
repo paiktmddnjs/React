@@ -150,6 +150,25 @@ userLikes = { "post1": true(좋아요), "post3": true(좋아요) }
 
 <br><br>
 
+## 📌 실행 화면
+
+### ✍️ 리뷰 작성 (Create)
+
+![글쓰기](https://github.com/user-attachments/assets/5bd00738-571b-4fbc-81e4-635fe606ca1b)
+
+---
+
+### ❤️ 좋아요 및 BEST 3 리뷰 조회 (Read)
+
+![좋아요 및 BEST3 리뷰](https://github.com/user-attachments/assets/ba31666a-0420-4a12-88e9-4544fea04e69)
+
+---
+
+### ✏️ 리뷰 수정 및 🗑️ 삭제 (Update / Delete)
+
+![리뷰 수정 및 삭제](https://github.com/user-attachments/assets/adc6edb1-001d-4e0f-932a-2837cc5c9450)
+
+<br><br>
 
 ## 💡 학습 포인트 (Learning Points)
 
